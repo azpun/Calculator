@@ -21,6 +21,36 @@ body {
   min-height: 100vh;
 }
 
+#mainContainer {
+  max-width: 1280px;
+  width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#mainInput {
+  height: 90px;
+  width: 472px;
+}
+
+#buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-main {
+  width: 112px;
+  padding: 10px;
+}
+
 /* 
 button {
   border-radius: 8px;
