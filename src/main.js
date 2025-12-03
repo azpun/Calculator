@@ -3,6 +3,12 @@ import './style.css'
 
 const displayText = document.querySelector('#display');
 const numButton = document.querySelectorAll('.btn-num');
+const btnClear = document.getElementById('btn-clear');
+
+// event and function button clear
+btnClear.addEventListener('click', () => {
+    displayText.textContent = '0';
+});
 
 numButton.forEach(btn => {
     btn.addEventListener('click', () => {

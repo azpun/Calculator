@@ -68,6 +68,11 @@ body {
   padding: 10px;
   border-radius: 5px;
 }
+#btn-clear {
+  width: 112px;
+  padding: 10px;
+  border-radius: 5px;
+}
 
 .tableBtnContainer {
   border-spacing: 5px;
