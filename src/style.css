@@ -63,10 +63,14 @@ body {
   gap: 10px;
 }
 
-.btn-main {
+.btn-num {
   width: 112px;
   padding: 10px;
   border-radius: 5px;
+}
+
+.tableBtnContainer {
+  border-spacing: 5px;
 }
 
 /* 
