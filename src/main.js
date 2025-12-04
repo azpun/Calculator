@@ -3,18 +3,22 @@ import './style.css'
 
 const displayText = document.querySelector('#display'); // querySelector to select element with id display
 const resultDisplay = document.querySelector('#result'); // querySelector to select element with id result
+const fullDisplay = document.querySelector('#fullDisplay');
 const numButtons = document.querySelectorAll('.btn-num'); // querySelectorAll to select all elements with class btn-num
 const opButtons = document.querySelectorAll('.btn-op');
+const btnPreview = document.querySelectorAll('.buttonPreview');
 const btnClear = document.getElementById('btn-clear');
 const btnBackspace = document.getElementById('btn-backspace');
 const btnEqual = document.getElementById('btn-result');
 
 let tokens = []; // to store numbers and operators as tokens
+let preview = [];
 
 
 // event and function button clear
 btnClear.addEventListener('click', () => {
     displayText.textContent = '0'; // reset display text to 0
+    fullDisplay.textContent = '';
     resultDisplay.textContent = ''; // reset result display to empty
     tokens = [];
     // console.log(tokens);
@@ -49,10 +53,22 @@ numButtons.forEach(btn => {
 opButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const value = btn.dataset.op; // dataset.op to get the value of data-op attribute from the button
+        const num = btn.dataset.num;
         tokens.push(displayText.textContent); // push the current display text (number) to tokens array
         tokens.push(value); // push the clicked operator to tokens array
         displayText.textContent = '0'; // reset display text to 0 for the next number input
         // console.log(tokens);
+    })
+})
+
+btnPreview.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const value = btn.dataset.num;
+        if (fullDisplay.textContent === '0') { // if display text is 0, replace it with the clicked number
+            fullDisplay.textContent = value;
+        } else { // else, append the clicked number to the display text
+            fullDisplay.textContent += value;
+        };
     })
 })
 
