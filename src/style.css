@@ -56,6 +56,12 @@ body {
   font-size: 20px;
 }
 
+#result {
+  padding: 10px;
+  text-align: right;
+  font-size: 20px;
+}
+
 #buttonContainer {
   display: flex;
   flex-wrap: wrap;
@@ -63,12 +69,7 @@ body {
   gap: 10px;
 }
 
-.btn-num {
-  width: 112px;
-  padding: 10px;
-  border-radius: 5px;
-}
-#btn-clear {
+.btn-num, #btn-clear, #btn-backspace {
   width: 112px;
   padding: 10px;
   border-radius: 5px;
