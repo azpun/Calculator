@@ -53,13 +53,13 @@ body {
   padding: 10px;
   text-align: right;
   vertical-align: text-bottom; 
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #result {
   padding: 10px;
   text-align: right;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #buttonContainer {
@@ -69,7 +69,7 @@ body {
   gap: 10px;
 }
 
-.btn-num, #btn-clear, #btn-backspace {
+.btn-num,.btn-op, #btn-clear, #btn-backspace {
   width: 112px;
   padding: 10px;
   border-radius: 5px;
