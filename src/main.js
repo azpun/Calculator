@@ -21,7 +21,7 @@ btnClear.addEventListener('click', () => {
     fullDisplay.textContent = '';
     resultDisplay.textContent = ''; // reset result display to empty
     tokens = [];
-    // console.log(tokens);
+    console.log(tokens);
 });
 
 // event and function to delete/backspace
@@ -53,7 +53,6 @@ numButtons.forEach(btn => {
 opButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const value = btn.dataset.op; // dataset.op to get the value of data-op attribute from the button
-        const num = btn.dataset.num;
         tokens.push(displayText.textContent); // push the current display text (number) to tokens array
         tokens.push(value); // push the clicked operator to tokens array
         displayText.textContent = '0'; // reset display text to 0 for the next number input
@@ -108,8 +107,8 @@ function evaluatePostFix(postFix) { // postFix is an array of numbers and operat
         if (!isNaN(token)) { // if the token is a number (not NaN)
             opStack.push(parseFloat(token)); // push the number to opStack array, parseFloat to convert string to number
         } else { // if the token is an operator
-            const a = opStack.pop(); // pop the top two numbers from the stack
-            const b = opStack.pop(); // pop the second top number from the stack
+            const b = opStack.pop(); // pop the top two numbers from the stack
+            const a = opStack.pop(); // pop the second top number from the stack
             let result; // to store the result of the operation
 
             switch(token){ // perform the operation based on the operator
@@ -139,6 +138,9 @@ btnEqual.addEventListener('click', () => {
     const postFix = parseInfixToPosfix(tokens); // convert infix expression to postfix expression
     const result = evaluatePostFix(postFix); // evaluate the postfix expression to get the result
     resultDisplay.textContent = result;// display the result in the result display
+
+    console.log(postFix);
+    console.log(result);
     // reset tokens array for the next calculation
     tokens = [];
 })
