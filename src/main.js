@@ -18,22 +18,27 @@ let preview = [];
 // event and function button clear
 btnClear.addEventListener('click', () => {
     displayText.textContent = '0'; // reset display text to 0
-    fullDisplay.textContent = '';
+    fullDisplay.textContent = '0';
     resultDisplay.textContent = ''; // reset result display to empty
     tokens = [];
     console.log(tokens);
 });
 
-// event and function to delete/backspace
+// event and function to delete/backspace for display text and full display
 btnBackspace.addEventListener('click', () => {
-    if (displayText.textContent.length === 1) { // if only one character left, reset to 0
+    displayText.textContent = displayText.textContent.slice(0, -1); // remove the last character from display text
+    fullDisplay.textContent = fullDisplay.textContent.slice(0, -1);
+    if (displayText.textContent === '') { // if display text is empty, set it to 0
         displayText.textContent = '0';
-    } else {
-        displayText.textContent = displayText.textContent.slice(0, -1); // slice method to remove last character, slice(0, -1) means start from index 0 to the second last character.
-    } 
+    }
+    if (fullDisplay.textContent === '') {
+        fullDisplay.textContent = '0';
+    }
     // why displayText.textContent can use slice method? because displayText.textContent is a string, and string has slice method.
 });
 
+console.log('tokens: ' + tokens);
+console.log('preview: ' + preview);
 // event and function for number buttons 0-9
 // using forEach because numButton used querySelectorAll which returns a node list
 // node list is similar to an array, so we can use forEach to loop through each button
@@ -109,14 +114,14 @@ function evaluatePostFix(postFix) { // postFix is an array of numbers and operat
         } else { // if the token is an operator
             const b = opStack.pop(); // pop the top two numbers from the stack
             const a = opStack.pop(); // pop the second top number from the stack
+            
             let result; // to store the result of the operation
-
             switch(token){ // perform the operation based on the operator
                 case '+':
                     result = a + b;
                     break;
                 case '-':
-                    result = a + b;
+                    result = a - b;
                     break;
                 case '*':
                     result = a * b;
@@ -134,13 +139,10 @@ function evaluatePostFix(postFix) { // postFix is an array of numbers and operat
 // event and function for equal button, to calculate the result 
 // using the functions above and display the result
 btnEqual.addEventListener('click', () => {
-
     const postFix = parseInfixToPosfix(tokens); // convert infix expression to postfix expression
     const result = evaluatePostFix(postFix); // evaluate the postfix expression to get the result
     resultDisplay.textContent = result;// display the result in the result display
 
-    console.log(postFix);
-    console.log(result);
     // reset tokens array for the next calculation
     tokens = [];
 })
