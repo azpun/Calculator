@@ -18,7 +18,7 @@ let tokens = []; // to store numbers and operators as tokens
 // event and function button clear
 btnClear.addEventListener('click', () => {
     displayText.textContent = '0'; // reset display text to 0
-    fullDisplay.textContent = '';
+    fullDisplay.textContent = '0';
     resultDisplay.textContent = ''; // reset result display to empty
     tokens = [];
 });
