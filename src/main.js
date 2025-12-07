@@ -3,7 +3,7 @@ import './style.css'
 
 const displayText = document.querySelector('#display'); // querySelector to select element with id display
 const resultDisplay = document.querySelector('#result'); // querySelector to select element with id result
-const fullDisplay = document.querySelector('#fullDisplay');
+const expressionDisplay = document.querySelector('#expressionDisplay');
 const numButtons = document.querySelectorAll('.btn-num'); // querySelectorAll to select all elements with class btn-num
 const opButtons = document.querySelectorAll('.btn-op');
 const btnPreview = document.querySelectorAll('.buttonPreview');
@@ -18,38 +18,27 @@ let tokens = []; // to store numbers and operators as tokens
 // event and function button clear
 btnClear.addEventListener('click', () => {
     displayText.textContent = '0'; // reset display text to 0
-    fullDisplay.textContent = '0';
+    expressionDisplay.textContent = '0';
     resultDisplay.textContent = ''; // reset result display to empty
     tokens = [];
 });
 
-// event and function to delete/backspace for display text and full display
+// event and function to delete/backspace for display text and expression display
 btnBackspace.addEventListener('click', () => {
     displayText.textContent = displayText.textContent.slice(0, -1); // remove the last character from display text
-    fullDisplay.textContent = fullDisplay.textContent.slice(0, -1);
+    expressionDisplay.textContent = expressionDisplay.textContent.slice(0, -1);
     if (displayText.textContent === '') { // if display text is empty, set it to 0
         displayText.textContent = '0';
     }
-    if (fullDisplay.textContent === '') {
-        fullDisplay.textContent = '0';
+    if (expressionDisplay.textContent === '') {
+        expressionDisplay.textContent = '0';
     }
     // why displayText.textContent can use slice method? because displayText.textContent is a string, and string has slice method.
 });
 
-// event and function for number buttons 0-9
+// event and function handler for number buttons 0-9
 // using forEach because numButton used querySelectorAll which returns a node list
 // node list is similar to an array, so we can use forEach to loop through each button
-btnPreview.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const value = btn.dataset.num;
-        if (fullDisplay.textContent === '0') { // if display text is 0, replace it with the clicked number
-            fullDisplay.textContent = value;
-        } else { // else, append the clicked number to the display text
-            fullDisplay.textContent += value;
-        };
-    })
-})
-
 numButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const value = btn.dataset.num; // dataset.num to get the value of data-num attribute from the button
@@ -60,6 +49,20 @@ numButtons.forEach(btn => {
         };
     })
 });
+
+// event and function handler for number buttons preview 0-9 at expression display
+// using forEach because btnPreview used querySelectorAll which returns a node list
+// node list is similar to an array, so we can use forEach to loop through each button
+btnPreview.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const value = btn.dataset.num;
+        if (expressionDisplay.textContent === '0') { // if display text is 0, replace it with the clicked number
+            expressionDisplay.textContent = value;
+        } else { // else, append the clicked number to the display text
+            expressionDisplay.textContent += value;
+        };
+    })
+})
 
 // event and function for operator buttons + - * /, using forEach because opButton used querySelectorAll which returns a node list
 // node list is similar to an array, so we can use forEach to loop through each button
