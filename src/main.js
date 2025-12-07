@@ -21,24 +21,17 @@ btnClear.addEventListener('click', () => {
     fullDisplay.textContent = '0';
     resultDisplay.textContent = ''; // reset result display to empty
     tokens = [];
-    console.log(tokens);
 });
 
 // event and function to delete/backspace for display text and full display
 btnBackspace.addEventListener('click', () => {
     displayText.textContent = displayText.textContent.slice(0, -1); // remove the last character from display text
-    fullDisplay.textContent = fullDisplay.textContent.slice(0, -1);
     if (displayText.textContent === '') { // if display text is empty, set it to 0
         displayText.textContent = '0';
-    }
-    if (fullDisplay.textContent === '') {
-        fullDisplay.textContent = '0';
     }
     // why displayText.textContent can use slice method? because displayText.textContent is a string, and string has slice method.
 });
 
-console.log('tokens: ' + tokens);
-console.log('preview: ' + preview);
 // event and function for number buttons 0-9
 // using forEach because numButton used querySelectorAll which returns a node list
 // node list is similar to an array, so we can use forEach to loop through each button
