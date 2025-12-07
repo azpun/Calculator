@@ -10,9 +10,18 @@
     <div id="mainContainer">
       <div id="app">
         <div id="displayContainer">
-          <div id="fullDisplay">0</div>
+          <div id="expressionDisplay">0</div>
           <div id="display">0</div>
-          <div id="result"></div>
+          <table id="resultTable">
+            <tbody>
+              <tr>
+              <td>Hasil: </td>
+              <td>
+                <div id="result">0</div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
         <div id="buttonContainer">
           <table class="tableBtnContainer">
@@ -23,7 +32,7 @@
                 </button>
               </td>
               <td>
-                <button id="btn-backspace" class="buttonPreview">
+                <button id="btn-backspace">
                   <span>&#8592;</span>
                 </button>
               </td>
