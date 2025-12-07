@@ -12,13 +12,13 @@ const btnBackspace = document.getElementById('btn-backspace');
 const btnEqual = document.getElementById('btn-result');
 
 let tokens = []; // to store numbers and operators as tokens
-let preview = [];
+// let preview = [];
 
 
 // event and function button clear
 btnClear.addEventListener('click', () => {
     displayText.textContent = '0'; // reset display text to 0
-    fullDisplay.textContent = '0';
+    fullDisplay.textContent = '';
     resultDisplay.textContent = ''; // reset result display to empty
     tokens = [];
 });
@@ -26,8 +26,12 @@ btnClear.addEventListener('click', () => {
 // event and function to delete/backspace for display text and full display
 btnBackspace.addEventListener('click', () => {
     displayText.textContent = displayText.textContent.slice(0, -1); // remove the last character from display text
+    fullDisplay.textContent = fullDisplay.textContent.slice(0, -1);
     if (displayText.textContent === '') { // if display text is empty, set it to 0
         displayText.textContent = '0';
+    }
+    if (fullDisplay.textContent === '') {
+        fullDisplay.textContent = '0';
     }
     // why displayText.textContent can use slice method? because displayText.textContent is a string, and string has slice method.
 });
@@ -35,6 +39,17 @@ btnBackspace.addEventListener('click', () => {
 // event and function for number buttons 0-9
 // using forEach because numButton used querySelectorAll which returns a node list
 // node list is similar to an array, so we can use forEach to loop through each button
+btnPreview.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const value = btn.dataset.num;
+        if (fullDisplay.textContent === '0') { // if display text is 0, replace it with the clicked number
+            fullDisplay.textContent = value;
+        } else { // else, append the clicked number to the display text
+            fullDisplay.textContent += value;
+        };
+    })
+})
+
 numButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const value = btn.dataset.num; // dataset.num to get the value of data-num attribute from the button
@@ -55,17 +70,6 @@ opButtons.forEach(btn => {
         tokens.push(value); // push the clicked operator to tokens array
         displayText.textContent = '0'; // reset display text to 0 for the next number input
         // console.log(tokens);
-    })
-})
-
-btnPreview.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const value = btn.dataset.num;
-        if (fullDisplay.textContent === '0') { // if display text is 0, replace it with the clicked number
-            fullDisplay.textContent = value;
-        } else { // else, append the clicked number to the display text
-            fullDisplay.textContent += value;
-        };
     })
 })
 
